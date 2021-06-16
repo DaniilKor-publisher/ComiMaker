@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
+    tools:context=".LoginActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        android:src="@drawable/loco_ic"/>
+
+    <TextView
+        android:id="@+id/txtHello"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/futurespore"
+        android:text="Добро пожаловать!"
+        android:textColor="@color/textAll"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="362dp"
+        android:layout_height="45dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/et_bg"
+        android:fontFamily="@font/futurespore"
+        android:gravity="center_vertical"
+        android:hint=" Введите имя"
+        android:textColor="@color/textAll"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/txtHello" />
+
+    <Button
+        android:id="@+id/enterButton"
+        android:layout_width="0dp"
+        android:layout_height="40sp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bt_bg"
+        android:fontFamily="@font/futurespore"
+        android:gravity="center"
+        android:text="Продолжить"
+        android:textAllCaps="false"
+        android:textColor="@color/textAll"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/etName" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/enterButton"
+        app:lottie_fileName="lottieAnim.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
