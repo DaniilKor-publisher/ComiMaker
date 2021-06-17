@@ -63,7 +63,7 @@ public class ListTemplatesActivity extends AppCompatActivity implements DetailRe
         listTemplates = findViewById(R.id.rv);
         listTemplates.setLayoutManager(new LinearLayoutManager(this));
         listTemplates.setHasFixedSize(true);
-        adapter = new DetailRecyclerViewAdapter(templates, this, this);
+        adapter = new DetailRecyclerViewAdapter(templates, this);
         listTemplates.setAdapter(adapter);
     }
 
@@ -103,14 +103,34 @@ public class ListTemplatesActivity extends AppCompatActivity implements DetailRe
         cv.put("image_link", template.getImageLink());
         cv.put("category", template.getCategory());
 
-        long res = mDb.insert("favourites", null, cv);
+        if (getCount(position) == 0) {
+            long res = mDb.insert("favourites", null, cv);
 
-        if (res > -1) {
-            Toast.makeText(this, "Шаблон добавлен в любимые", Toast.LENGTH_SHORT).show();
+            if (res > -1) {
+                Toast.makeText(this, "Шаблон добавлен в любимые", Toast.LENGTH_SHORT).show();
 
-            mDb.delete(template.getCategory(), "description" + " = ?", new String[] {template.getTitle()});
+                mDb.delete(template.getCategory(), "description" + " = ?", new String[]{template.getTitle()});
+            } else {
+                Toast.makeText(this, "Ошибка", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(this, "Ошибка", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Шаблон уже в любимых", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public int getCount(int position) {
+        Cursor c = null;
+        try {
+            String query = "select count(*) from favourites where description = ?";
+            c = mDb.rawQuery(query, new String[]{templates.get(position).getTitle()});
+            if (c.moveToFirst()) {
+                return c.getInt(0);
+            }
+            return 0;
+        } finally {
+            if (c != null) {
+                c.close();
+            }
         }
     }
 }

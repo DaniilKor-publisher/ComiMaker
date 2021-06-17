@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/icon"
+        android:id="@+id/favouriteIcon"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="25dp"
@@ -20,7 +20,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/favouriteDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -30,7 +30,8 @@
         android:text="Название шаблона"
         android:textColor="@color/textAll"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/favouriteIcon"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -40,11 +41,11 @@
         android:layout_marginTop="25dp"
         android:fontFamily="@font/futurespore"
         android:singleLine="false"
-        android:text="Понравился шаблон? Отметьте его любимым нажатием!"
+        android:text="Шаблон больше не нужен? Удалите его нажатием!"
         android:textColor="@color/textAll"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/icon"
-        app:layout_constraintTop_toBottomOf="@id/description" />
+        app:layout_constraintStart_toEndOf="@+id/favouriteIcon"
+        app:layout_constraintTop_toBottomOf="@id/favouriteDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

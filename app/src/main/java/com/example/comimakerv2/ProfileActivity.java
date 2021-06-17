@@ -80,8 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 1:
-                        Intent i = new Intent(ProfileActivity.this, ListTemplatesActivity.class);
-                        i.putExtra("kind", "Любимые");
+                        Intent i = new Intent(ProfileActivity.this, FavouriteActivity.class);
                         startActivity(i);
                 }
             }
@@ -89,11 +88,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     MyAdjusts[] makeSettings() {
-        MyAdjusts[] arr = new MyAdjusts[3];
+        MyAdjusts[] arr = new MyAdjusts[2];
 
-        String[] titlesArr = {"Мои комиксы", "Любимые шаблоны", "Настройки"};
+        String[] titlesArr = {"Мои комиксы", "Любимые шаблоны"};
 
-        int[] imageResources = {R.drawable.ic_recent, R.drawable.ic_favorite, R.drawable.ic_adjust};
+        int[] imageResources = {R.drawable.ic_recent, R.drawable.ic_favorite};
 
 
         for (int i = 0; i < arr.length; i++) {

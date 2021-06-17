@@ -24,29 +24,11 @@ public class DetailRecyclerViewAdapter extends RecyclerView.Adapter<DetailRecycl
     ArrayList<Template> myTemplates;
     private DetailRecyclerViewAdapter.addToFavouritesListener addToFavouritesListener;
 
-    //private TemplateDatabaseHelper mDBHelper;
-    //private SQLiteDatabase mDb;
-
     public DetailRecyclerViewAdapter(){}
 
-    public DetailRecyclerViewAdapter(ArrayList<Template> myTemplates, DetailRecyclerViewAdapter.addToFavouritesListener addToFavouritesListener, Context context){
+    public DetailRecyclerViewAdapter(ArrayList<Template> myTemplates, DetailRecyclerViewAdapter.addToFavouritesListener addToFavouritesListener){
         this.myTemplates = myTemplates;
         this.addToFavouritesListener = addToFavouritesListener;
-
-        /*mDBHelper = new TemplateDatabaseHelper(context);
-
-        try {
-            mDBHelper.updateDataBase();
-        } catch (IOException mIOException) {
-            throw new Error("UnableToUpdateDatabase");
-        }
-
-        try {
-            mDb = mDBHelper.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        }
-         */
     }
 
 
@@ -72,7 +54,7 @@ public class DetailRecyclerViewAdapter extends RecyclerView.Adapter<DetailRecycl
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView myTitle;
-        ImageView myIcon, isFavorite;
+        ImageView myIcon;
         DetailRecyclerViewAdapter.addToFavouritesListener addToFavouritesListener;
 
         public ViewHolder(@NonNull View itemView, DetailRecyclerViewAdapter.addToFavouritesListener addToFavouritesListener) {
@@ -80,7 +62,6 @@ public class DetailRecyclerViewAdapter extends RecyclerView.Adapter<DetailRecycl
 
             myTitle = itemView.findViewById(R.id.description);
             myIcon = itemView.findViewById(R.id.icon);
-            isFavorite = itemView.findViewById(R.id.favouriteIcon);
 
             this.addToFavouritesListener = addToFavouritesListener;
 
