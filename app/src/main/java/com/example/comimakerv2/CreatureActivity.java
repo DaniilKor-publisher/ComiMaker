@@ -106,14 +106,16 @@ public class CreatureActivity extends AppCompatActivity implements View.OnClickL
         sheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Целый лист", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(CreatureActivity.this, EditImageActivity.class);
+                startActivity(i);
             }
         });
 
         sectors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Разделённая панель", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(CreatureActivity.this, ChooseLayoutActivity.class);
+                startActivity(i);
             }
         });
     }

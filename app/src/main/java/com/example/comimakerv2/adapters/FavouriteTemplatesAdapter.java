@@ -1,6 +1,11 @@
 package com.example.comimakerv2.adapters;
 
-import android.content.Context;
+import android.content.ContentResolver;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +17,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.comimakerv2.R;
 import com.example.comimakerv2.myClasses.Template;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class FavouriteTemplatesAdapter extends RecyclerView.Adapter<FavouriteTemplatesAdapter.ViewHolder> {
 
     ArrayList<Template> favouriteTemplates;
     private onFavouriteTemplateListener deleteFromFavouritesListener;
+    Bitmap bitmap;
+    ContentResolver contentResolver;
 
-    public FavouriteTemplatesAdapter(){}
+    public FavouriteTemplatesAdapter() {}
 
-    public FavouriteTemplatesAdapter(ArrayList<Template> myTemplates,  onFavouriteTemplateListener onFavouriteTemplateListener){
+    public FavouriteTemplatesAdapter(ArrayList<Template> myTemplates, onFavouriteTemplateListener onFavouriteTemplateListener, ContentResolver contentResolver) {
         this.favouriteTemplates = myTemplates;
         this.deleteFromFavouritesListener = onFavouriteTemplateListener;
+        this.contentResolver = contentResolver;
     }
 
     @NonNull
@@ -37,7 +49,17 @@ public class FavouriteTemplatesAdapter extends RecyclerView.Adapter<FavouriteTem
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Picasso.get().load(favouriteTemplates.get(position).getImageLink()).into(holder.icon);
+        if (favouriteTemplates.get(position).getImageLink().startsWith("https")) {
+            Picasso.get().load(favouriteTemplates.get(position).getImageLink()).into(holder.icon);
+        } else {
+            Uri uri = Uri.parse(favouriteTemplates.get(position).getImageLink());
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri);
+                holder.icon.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         holder.description.setText(favouriteTemplates.get(position).getTitle());
     }
 
@@ -46,7 +68,7 @@ public class FavouriteTemplatesAdapter extends RecyclerView.Adapter<FavouriteTem
         return favouriteTemplates.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView description;
         ImageView icon;
@@ -63,9 +85,9 @@ public class FavouriteTemplatesAdapter extends RecyclerView.Adapter<FavouriteTem
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(onFavouriteTemplateListener != null){
+                    if (onFavouriteTemplateListener != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             onFavouriteTemplateListener.deleteFromFavourites(position);
                         }
                     }
@@ -74,7 +96,7 @@ public class FavouriteTemplatesAdapter extends RecyclerView.Adapter<FavouriteTem
         }
     }
 
-    public interface onFavouriteTemplateListener{
+    public interface onFavouriteTemplateListener {
         public void deleteFromFavourites(int position);
     }
 }

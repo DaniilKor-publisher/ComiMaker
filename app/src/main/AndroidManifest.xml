@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.comimakerv2">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ComiMakerV2">
-        <activity android:name=".FavouriteActivity"></activity>
+        <activity android:name=".ChooseLayoutActivity"/>
+        <activity android:name=".EditImageActivity" />
+        <activity android:name=".FavouriteActivity" />
         <activity android:name=".ListTemplatesActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".TemplatesActivity" />

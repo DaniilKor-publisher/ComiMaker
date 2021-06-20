@@ -11,6 +11,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.comimakerv2.adapters.RecyclerViewAdapter;
 import com.example.comimakerv2.helpers.TemplateDatabaseHelper;
@@ -91,9 +92,14 @@ public class TemplatesActivity extends AppCompatActivity implements RecyclerView
 
     @Override
     public void onTemplateClick(int position) {
-        Intent i = new Intent(TemplatesActivity.this, ListTemplatesActivity.class);
-        i.putExtra("kind", templates.get(position).getTitle());
-        startActivity(i);
+        if(position == 5){
+            Toast.makeText(this, "Находится в разработке", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent i = new Intent(TemplatesActivity.this, ListTemplatesActivity.class);
+            i.putExtra("kind", templates.get(position).getTitle());
+            startActivity(i);
+        }
     }
 
     @Override
