@@ -51,7 +51,7 @@ import ja.burhanrashid52.photoeditor.ViewType;
 
 public class EditImageActivity extends BaseActivity implements OnPhotoEditorListener,
         View.OnClickListener, EditingToolsAdapter.OnItemSelected, FilterListener
-        ,StickerBSFragment.StickerListener {
+        , StickerBSFragment.StickerListener {
 
     public static final String PINCH_TEXT_SCALABLE_INTENT_KEY = "PINCH_TEXT_SCALABLE";
     private static final String TAG = EditImageActivity.class.getSimpleName();
@@ -147,7 +147,7 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.imgUndo:
                 mPhotoEditor.undo();
                 break;
@@ -240,7 +240,7 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
         mLvFrameOptions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch(position){
+                switch (position) {
                     case 0:
 
                 }
@@ -343,11 +343,10 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
 
     @Override
     public void onStickerClick(Bitmap bitmap, String url) {
-        if(getChosenTemplateCategory(url).equals("backgrounds")){
+        if (getChosenTemplateCategory(url).equals("backgrounds")) {
             mPhotoEditor.clearAllViews();
             mPhotoEditorView.getSource().setImageBitmap(bitmap);
-        }
-        else {
+        } else {
             mPhotoEditor.addImage(bitmap);
         }
     }
@@ -359,7 +358,7 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
         fragment.show(getSupportFragmentManager(), fragment.getTag());
     }
 
-    public String getChosenTemplateCategory(String url){
+    public String getChosenTemplateCategory(String url) {
         Cursor c = null;
         try {
             String query = "select category from favourites where image_link = ?";

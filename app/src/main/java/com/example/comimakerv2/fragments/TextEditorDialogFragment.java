@@ -122,6 +122,7 @@ public class TextEditorDialogFragment extends DialogFragment {
         futurspore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), "Выбран шрифт futurspore", Toast.LENGTH_SHORT).show();
                 fontCode = R.font.app_font;
             }
         });
@@ -129,6 +130,7 @@ public class TextEditorDialogFragment extends DialogFragment {
         constantig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), "Выбран шрифт constantig", Toast.LENGTH_SHORT).show();
                 fontCode = R.font.extra_font;
             }
         });
@@ -145,9 +147,10 @@ public class TextEditorDialogFragment extends DialogFragment {
                 mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 dismiss();
                 String inputText = mAddTextEditText.getText().toString();
-                if (!TextUtils.isEmpty(inputText) && mTextEditor != null) {
+                if (!TextUtils.isEmpty(inputText) && mTextEditor != null && fontCode != 0) {
                     mTextEditor.onDone(inputText, mColorCode, fontCode);
-                }
+                } else{
+                    Toast.makeText(getContext(), "Выберете шрифт, нажав на один из текстов наверху", Toast.LENGTH_SHORT).show();                }
             }
         });
 
